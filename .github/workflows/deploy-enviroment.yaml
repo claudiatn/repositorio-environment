@@ -1,0 +1,13 @@
+name: Deply environment
+on:
+  workflow_call:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Entorno 
+      run: |
+        echo "El entorno a desplegar  ${{  github.event.inputs.environment }}"
+    
+
