@@ -15,15 +15,15 @@ jobs:
       run: |
         if [ "${{ github.event.inputs.environment }}" == "production" ]; then
           echo "Cargando variables de entorno para producción"
-          echo "API_URL=${{ variables.API_URL }}" >> $GITHUB_ENV
-          echo "LOG_LEVEL=${{ variables.LOG_LEVEL }}" >> $GITHUB_ENV
+          echo "API_URL=${{ vars.API_URL }}" >> $GITHUB_ENV
+          echo "LOG_LEVEL=${{ vars.LOG_LEVEL }}" >> $GITHUB_ENV
         elif [ "${{ github.event.inputs.environment }}" == "staging" ]; then
           echo "Cargando variables de entorno para staging"
-          echo "API_URL=${{ variables.API_URL }}" >> $GITHUB_ENV
-          echo "LOG_LEVEL=${{ variables.LOG_LEVEL }}" >> $GITHUB_ENV
+          echo "API_URL=${{ vars.API_URL }}" >> $GITHUB_ENV
+          echo "LOG_LEVEL=${{ vars.LOG_LEVEL }}" >> $GITHUB_ENV
         elif [ "${{ github.event.inputs.environment }}" == "development" ]; then
-           echo "API_URL=${{ variables.API_URL }}" >> $GITHUB_ENV
-          echo "LOG_LEVEL=${{ variables.LOG_LEVEL }}" >> $GITHUB_ENV
+           echo "API_URL=${{ vars.API_URL }}" >> $GITHUB_ENV
+          echo "LOG_LEVEL=${{ vars.LOG_LEVEL }}" >> $GITHUB_ENV
         fi
 
     - name: Mostrar variables cargadas
