@@ -31,4 +31,8 @@ jobs:
         echo "API_URL: $API_URL"
         echo "LOG_LEVEL: $LOG_LEVEL"
     
-
+    - name: view the secrets context
+      shell: bash
+      run: echo "$SECRETS_CONTEXT"
+      env:
+        SECRETS_CONTEXT: ${{ toJson(secrets) }}
