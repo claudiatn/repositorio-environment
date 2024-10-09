@@ -12,10 +12,18 @@ jobs:
       run: |
         echo "El entorno a desplegar  ${{  github.event.inputs.environment }}"
 
-    - name: Cargar variables de entorno
+    - name: Verificar variables de entorno
       run: |
-          echo "API_URL=${{ secrets.API_URL }}" >> $GITHUB_ENV
-          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> $GITHUB_ENV
-   
+        if [ -z "${{ vars.API_URL }}" ]; then
+          echo "La variable API_URL no está definida o está vacía."
+        else
+          echo "API_URL=${{ vars.API_URL }}"
+        fi
+        
+        if [ -z "${{ vars.LOG_LEVEL }}" ]; then
+          echo "La variable LOG_LEVEL no está definida o está vacía."
+        else
+          echo "LOG_LEVEL=${{ vars.LOG_LEVEL }}"
+        fi
     
  
