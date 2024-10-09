@@ -9,5 +9,26 @@ jobs:
     - name: Entorno 
       run: |
         echo "El entorno a desplegar  ${{  github.event.inputs.environment }}"
+
+    - name: Cargar variables de entorno
+      id: load-vars
+      run: |
+        if [ "${{ github.event.inputs.environment }}" == "production" ]; then
+          echo "Cargando variables de entorno para producción"
+          echo "API_URL=${{ secrets.API_URL }}" >> $GITHUB_ENV
+          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> $GITHUB_ENV
+        elif [ "${{ github.event.inputs.environment }}" == "staging" ]; then
+          echo "Cargando variables de entorno para staging"
+          echo "API_URL=${{ secrets.API_URL }}" >> $GITHUB_ENV
+          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> $GITHUB_ENV
+        elif [ "${{ github.event.inputs.environment }}" == "development" ]; then
+           echo "API_URL=${{ secrets.API_URL }}" >> $GITHUB_ENV
+          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> $GITHUB_ENV
+        fi
+
+    - name: Mostrar variables cargadas
+      run: |
+        echo "API_URL: $API_URL"
+        echo "LOG_LEVEL: $LOG_LEVEL"
     
 
